@@ -1,6 +1,6 @@
 import requests
 import os
-from config.adk import get_patient_agent
+from config.agent.adk import get_patient_agent
 
 WHATSAPP_API_URL = "https://graph.facebook.com/v22.0/652573494605608/messages"
 WHATSAPP_TOKEN = os.getenv('WHATSAPP_TOKEN')

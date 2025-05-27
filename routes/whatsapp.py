@@ -1,6 +1,6 @@
 from flask import Blueprint, request, jsonify
 from config.database import get_pg_connection
-from config.adk import get_patient_agent
+from config.agent.adk import get_patient_agent
 from utils.whatsapp import send_whatsapp_message
 from datetime import datetime
 
