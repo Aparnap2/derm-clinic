@@ -1,6 +1,7 @@
 from flask import Blueprint, request, jsonify
 from config.database import get_pg_connection
-from config.agent.adk import get_patient_agent
+from config.ai_config import get_ai_client
+from langchain_core.messages import SystemMessage, HumanMessage
 from utils.whatsapp import send_whatsapp_message
 from datetime import datetime
 
@@ -17,8 +18,12 @@ def whatsapp_webhook():
                     phone_number = message['from']
                     text = message['text']['body']
                     
-                    agent = get_patient_agent()
-                    response = agent.run(text)
+                    llm = get_ai_client()
+                    messages = [
+                        SystemMessage(content="You are a dermatology clinic assistant. Answer patient queries accurately, ensuring compliance and no diagnosis."),
+                        HumanMessage(content=text)
+                    ]
+                    response = llm.invoke(messages).content
                     
                     send_whatsapp_message(phone_number, response)
                     

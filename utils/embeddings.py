@@ -2,7 +2,8 @@
 import os
 import numpy as np
 from langchain_google_genai import GoogleGenerativeAIEmbeddings
-
+from dotenv import load_dotenv
+load_dotenv()
 # Initialize the embedding model
 # Ensure GOOGLE_API_KEY is set in your environment or .env file
 # Using a standard embedding model name
